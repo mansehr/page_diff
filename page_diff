@@ -1,0 +1,36 @@
+#!/bin/bash
+LINK=$1
+FILE=$2
+MAIL="youremail@mail.com"
+
+# Parameter control
+if [ "$#" = "0" ]; then
+	echo -e "To few arguments! \nUsage:  \n$ page_diff link [filename]"
+	exit 0
+else
+	LINK=$1
+fi
+
+# Set deafult file value
+if [ "$#" != "2" ]; then
+	FILE="diff_file"
+fi
+
+# === Logic ===
+
+mv $FILE $FILE.old
+
+# Old way of getting page, to much markup language
+#wget -O$FILE $LINK
+
+# New way of retrieving file, only consider text
+lynx -dump "$LINK" > $FILE
+
+PG_DIFF=$(diff -i $FILE $FILE.old)
+
+if [ "$?" = "1" ]; then
+	echo -e "$LINK \n\n $PG_DIFF" | mail -s "Läs updaterad sida" $mail
+	echo -e "Differences found \n$PG_DIFF"
+else
+	echo No difference
+fi
