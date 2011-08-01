@@ -1,0 +1,4 @@
+== page_diff ==
+Page diff is a shell script to discover if a webpage has been updated. It will report to an configured email and on screen.
+
+more to come....
