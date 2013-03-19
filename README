@@ -1,4 +1,4 @@
 == page_diff ==
-Page diff is a shell script to discover if a webpage has been updated. It will report to an configured email and on screen.
+Page diff is a shell script to monitor if a webpage has been updated. It will report to an configured email and on screen.
 
-more to come....
+It's supposed to be configured as a cronjob. 
